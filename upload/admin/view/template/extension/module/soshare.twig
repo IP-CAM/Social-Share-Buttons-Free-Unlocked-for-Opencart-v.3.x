@@ -1,0 +1,1133 @@
+{{ header }}{{ column_left }}
+<div id="content">
+	<div class="page-header">
+		<div class="container-fluid">
+			<div class="pull-right form-inline">
+				<button type="submit" form="form-module" name="apply" data-toggle="tooltip" title="{{ button_apply }}" class="btn btn-success"><i class="fa fa-check"></i> {{ button_apply }}</button>
+				<button type="submit" form="form-module" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i> {{ button_save }}</button>
+				<a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i> {{ button_cancel }}</a>
+			</div>
+			<h1>{{ heading_text }}</h1>
+			<ul class="breadcrumb">
+				{% for breadcrumb in breadcrumbs %}
+					<li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<div class="container-fluid">
+		{% if error_warning %}
+			<div class="alert alert-danger alert-dismissible">
+				<i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+			</div>
+		{% endif %}
+		{% if success %}
+			<div class="alert alert-success alert-dismissible">
+      <i class="fa fa-exclamation-circle"></i> {{ success }}
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			</div>
+		{% endif %}
+		<style>.title-seperator {margin-top:-2px;border-top:1px solid #bdc3c7;opacity:0.8;}</style>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><i class="fa fa-pen"></i>{{ text_edit }}</h3>
+        <h3 style="margin-top:-5px;" class="panel-title pull-right">{{ heading_icon }}{{ heading_text }}</h3>
+			</div>
+			<div class="panel-body">
+				<ul class="nav nav-tabs">
+					<li class="active"><a href="#tab-main-settings" data-toggle="tab" class="nav-link"><i class="fa fa-sliders" aria-hidden="true"></i> {{ tab_main_settings }}</a></li>
+					<li><a href="#tab-platform-settings" data-toggle="tab" class="nav-link"><i class="fa fa-wifi" aria-hidden="true"></i> {{ tab_platform_settings }}</a></li>
+					<li><a href="#tab-font-settings" data-toggle="tab" class="nav-link"><i class="fa fa-font" aria-hidden="true"></i> {{ tab_font_settings }}</a></li>
+					<li><a href="#tab-align-settings" data-toggle="tab" class="nav-link"><i class="fa fa-align-left" aria-hidden="true"></i> {{ tab_align_settings }}</a></li>
+					<li><a href="#tab-responsive-settings" data-toggle="tab" class="nav-link"><i class="fas fa-desktop"></i> {{ tab_responsive_settings }}</a></li>
+					<li><a href="#tab-preview" data-toggle="tab" class="nav-link"><i class="fa fa-eye" aria-hidden="true"></i> {{ tab_preview }}</a></li>
+					<li><a href="#tab-support" data-toggle="tab" class="nav-link"><i class="fa fa-life-ring" aria-hidden="true"></i> {{ tab_support }}</a></li>
+				</ul>
+				<form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-module" class="form-horizontal">
+					<div class="tab-content">
+						<div class="tab-pane active form-horizontal" id="tab-main-settings">
+                <div class="row">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-tab-container">
+									<div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 common-tabs main-tab-menu">
+										<div class="list-group">
+											<a href="#" class="list-group-item active"><i class="fas fa-cog"></i> {{ text_main_options }}</a>
+											<a href="#" class="list-group-item"><i class="fas fa-store-alt"></i> {{ text_store_options }}</a>
+										</div>
+									</div>
+									<div class="col-lg-10 col-md-10 col-sm-9 col-xs-8 main-tab">
+										<div class="main-tab-content active">
+											<center><h3><i class="fas fa-cog"></i> {{ text_main_options }}</h3></center><hr class="title-seperator">
+											<div class="row">
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<label class="control-label" for="input-status"><span class="help" title="{{ help_status }}" data-toggle="tooltip">{{ entry_status }}</span></label><br>
+												{% if (module_soshare_status == 1) %}
+												<input type="checkbox" name="module_soshare_status" value="1" id="sunday-status-enabled" data-toggle="toggle" data-on="Enabled" data-off="Disabled" checked>
+												{% else %}
+												<input type="checkbox" name="module_soshare_status" value="1" id="sunday-status-enabled" data-toggle="toggle" data-on="Enabled" data-off="Disabled">
+												{% endif %}
+											</div><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><br></div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+												<label class="control-label" for="input-name"><span class="help" title="{{ help_name }}" data-toggle="tooltip">{{ entry_module_name }}</span></label><br>
+												<input type="text" name="module_soshare_name" value="{{ module_soshare_name }}" placeholder="{{ entry_name }}" id="input-name" class="form-control"/>
+											</div>
+										</div>
+									</div>
+										<div class="main-tab-content">
+											<center><h3><i class="fas fa-store-alt"></i> {{ text_store_options }}</h3></center><hr class="title-seperator">
+											<div class="row">
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+													<label class="control-label" for="input-name"><span class="help" title="{{ help_store_name }}" data-toggle="tooltip">{{ entry_store_name }}</span></label><br>
+													<input type="text" name="module_soshare_store_name" value="{{ module_soshare_store_name }}" placeholder="{{ entry_store_name }}" id="input-store-name" class="form-control"/>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane form-horizontal" id="tab-platform-settings">
+							<div class="row">
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 platform-tab-container">
+									<div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 common-tabs platform-tab-menu">
+										<div class="list-group">
+											<a href="#" class="list-group-item active facebook-item"><i class="fab fa-facebook" aria-hidden="true"></i> {{ text_facebook }}</a>
+											<a href="#" class="list-group-item linkedin-item"><i class="fab fa-linkedin" aria-hidden="true"></i> {{ text_linkedin }}</a>
+											<a href="#" class="list-group-item odnoklassniki-item"><i class="fab fa-odnoklassniki" aria-hidden="true"></i> {{ text_odnoklassniki }}</a>
+											<a href="#" class="list-group-item pinterest-item"><i class="fab fa-pinterest" aria-hidden="true"></i> {{ text_pinterest }}</a>
+											<a href="#" class="list-group-item pocket-item"><i class="fab fa-get-pocket" aria-hidden="true"></i> {{ text_pocket }} - Pro</a>
+											<a href="#" class="list-group-item reddit-item"><i class="fab fa-reddit" aria-hidden="true"></i> {{ text_reddit }} - Pro</a>
+											<a href="#" class="list-group-item telegram-item"><i class="fab fa-telegram" aria-hidden="true"></i> {{ text_telegram }} - Pro</a>
+											<a href="#" class="list-group-item twitter-item"><i class="fab fa-twitter" aria-hidden="true"></i> {{ text_twitter }} - Pro</a>
+											<a href="#" class="list-group-item vkontakte-item"><i class="fab fa-vk" aria-hidden="true"></i> {{ text_vkontakte }} - Pro</a>
+											<a href="#" class="list-group-item whatsapp-item"><i class="fab fa-whatsapp" aria-hidden="true"></i> {{ text_whatsapp }} - Pro</a>
+											<a href="#" class="list-group-item evernote-item"><i class="far fa-sticky-note" aria-hidden="true"></i> {{ text_evernote }} - Pro</a>
+											<a href="#" class="list-group-item skype-item"><i class="fab fa-skype" aria-hidden="true"></i> {{ text_skype }} - Pro</a>
+											<a href="#" class="list-group-item tumblr-item"><i class="fab fa-tumblr" aria-hidden="true"></i> {{ text_tumblr }} - Pro</a>
+											<a href="#" class="list-group-item hacker-item"><i class="fab fa-hacker-news" aria-hidden="true"></i> {{ text_hacker_news }} - Pro</a>
+											<a href="#" class="list-group-item xing-item"><i class="fab fa-xing" aria-hidden="true"></i> {{ text_xing }} - Pro</a>
+											<a href="#" class="list-group-item email-item"><i class="fas fa-at" aria-hidden="true"></i> {{ text_email }} - Pro</a>
+											<a href="#" class="list-group-item print-item"><i class="fas fa-print" aria-hidden="true"></i> {{ text_print }} - Pro</a>
+											<a href="#" class="list-group-item coopy-item"><i class="fas fa-copy" aria-hidden="true"></i> {{ text_copy }} - Pro</a>
+											<a href="#" class="list-group-item other-item"><i class="fas fa-share-alt" aria-hidden="true"></i> {{ text_web_share }} - Pro</a>
+										</div>
+									</div>
+									<div class="col-lg-10 col-md-10 col-sm-9 col-xs-8 platform-tab">
+										<div class="platform-tab-content active">
+											<center><h3><i class="fab fa-facebook" aria-hidden="true" style="color:#1877f2;"></i> {{ text_facebook }}</h3></center><hr class="title-seperator">
+											<div class="row">
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+													<label class="control-label" for="input-facebook-status">{{ entry_facebook_status }}</label><br>				
+													{% if (module_soshare_facebook_status == 1) %}
+													<input type="checkbox" name="module_soshare_facebook_status" value="1" data-toggle="toggle" data-on="Enabled" data-off="Disabled" checked>
+													{% else %}
+													<input type="checkbox" name="module_soshare_facebook_status" value="1" data-toggle="toggle" data-on="Enabled" data-off="Disabled">
+													{% endif %}
+												</div><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><br></div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_text_color }}</label><br>
+													<input type="text" name="module_soshare_facebook_text_color" value="{{ module_soshare_facebook_text_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_hover_text_color }}</label><br>
+													<input type="text" name="module_soshare_facebook_hover_text_color" value="{{ module_soshare_facebook_hover_text_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_background_color }}</label><br>
+													<input type="text" name="module_soshare_facebook_bgcolor" value="{{ module_soshare_facebook_bgcolor }}" placeholder="#1877f2" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_hover_background_color }}</label><br>
+													<input type="text" name="module_soshare_facebook_hover_bgcolor" value="{{ module_soshare_facebook_hover_bgcolor }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_border_color }}</label><br>
+													<input type="text" name="module_soshare_facebook_border_color" value="{{ module_soshare_facebook_border_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_hover_border_color }}</label><br>
+													<input type="text" name="module_soshare_facebook_hover_border_color" value="{{ module_soshare_facebook_hover_border_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_icon_color }}</label><br>
+													<input type="text" name="module_soshare_facebook_icon_color" value="{{ module_soshare_facebook_icon_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_hover_icon_color }}</label><br>
+													<input type="text" name="module_soshare_facebook_hover_icon_color" value="{{ module_soshare_facebook_hover_icon_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_button_view }}</label><br>
+													<select name="module_soshare_facebook_view" id="input-text-align" class="form-control">
+													<option value="0" {{ "0" == module_soshare_facebook_view ? "selected" : "" }}>{{ entry_button_icon }}</option>
+													<option value="1" {{ "1" == module_soshare_facebook_view ? "selected" : "" }}>{{ entry_button_text }}</option>
+													<option value="2" {{ "2" == module_soshare_facebook_view ? "selected" : "" }}>{{ entry_button_both }}</option>
+													</select>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_tooltip_title }} - Pro</label><br>
+													<input type="text" readonly class="form-control"/>
+												</div>
+											</div>
+										</div>
+ 										<div class="platform-tab-content">
+											<center><h3><i class="fab fa-linkedin" aria-hidden="true" style="color:#0a66c2;"></i> {{ text_linkedin }}</h3></center><hr class="title-seperator">
+											<div class="row">
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+													<label class="control-label" for="input-linkedin-status">{{ entry_linkedin_status }}</label><br>
+													{% if (module_soshare_linkedin_status == 1) %}
+													<input type="checkbox" name="module_soshare_linkedin_status" value="1" data-toggle="toggle" data-on="Enabled" data-off="Disabled" checked>
+													{% else %}
+													<input type="checkbox" name="module_soshare_linkedin_status" value="1" data-toggle="toggle" data-on="Enabled" data-off="Disabled">
+													{% endif %}
+												</div><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><br></div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_text_color }}</label><br>
+													<input type="text" name="module_soshare_linkedin_text_color" value="{{ module_soshare_linkedin_text_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_hover_text_color }}</label><br>
+													<input type="text" name="module_soshare_linkedin_hover_text_color" value="{{ module_soshare_linkedin_hover_text_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_background_color }}</label><br>
+													<input type="text" name="module_soshare_linkedin_bgcolor" value="{{ module_soshare_linkedin_bgcolor }}" placeholder="#0a66c2" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_hover_background_color }}</label><br>
+													<input type="text" name="module_soshare_linkedin_hover_bgcolor" value="{{ module_soshare_linkedin_hover_bgcolor }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_border_color }}</label><br>
+													<input type="text" name="module_soshare_linkedin_border_color" value="{{ module_soshare_linkedin_border_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_hover_border_color }}</label><br>
+													<input type="text" name="module_soshare_linkedin_hover_border_color" value="{{ module_soshare_linkedin_hover_border_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_icon_color }}</label><br>
+													<input type="text" name="module_soshare_linkedin_icon_color" value="{{ module_soshare_linkedin_icon_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_hover_icon_color }}</label><br>
+													<input type="text" name="module_soshare_linkedin_hover_icon_color" value="{{ module_soshare_linkedin_hover_icon_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_button_view }}</label><br>
+													<select name="module_soshare_linkedin_view" id="input-text-align" class="form-control">
+													<option value="0" {{ "0" == module_soshare_linkedin_view ? "selected" : "" }}>{{ entry_button_icon }}</option>
+													<option value="1" {{ "1" == module_soshare_linkedin_view ? "selected" : "" }}>{{ entry_button_text }}</option>
+													<option value="2" {{ "2" == module_soshare_linkedin_view ? "selected" : "" }}>{{ entry_button_both }}</option>
+													</select>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_tooltip_title }} - Pro</label><br>
+													<input type="text" readonly class="form-control"/>
+												</div>
+											</div>
+										</div>
+                    <div class="platform-tab-content">
+											<center><h3><i class="fab fa-odnoklassniki" aria-hidden="true" style="color:#ee8208;"></i> {{ text_odnoklassniki }}</h3></center><hr class="title-seperator">
+											<div class="row">
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+													<label class="control-label" for="input-odnoklassniki-status">{{ entry_odnoklassniki_status }}</label><br>
+													{% if (module_soshare_odnoklassniki_status == 1) %}
+													<input type="checkbox" name="module_soshare_odnoklassniki_status" value="1" data-toggle="toggle" data-on="Enabled" data-off="Disabled" checked>
+													{% else %}
+													<input type="checkbox" name="module_soshare_odnoklassniki_status" value="1" data-toggle="toggle" data-on="Enabled" data-off="Disabled">
+													{% endif %}
+												</div><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><br></div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_text_color }}</label><br>
+													<input type="text" name="module_soshare_odnoklassniki_text_color" value="{{ module_soshare_odnoklassniki_text_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_hover_text_color }}</label><br>
+													<input type="text" name="module_soshare_odnoklassniki_hover_text_color" value="{{ module_soshare_odnoklassniki_hover_text_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_background_color }}</label><br>
+													<input type="text" name="module_soshare_odnoklassniki_bgcolor" value="{{ module_soshare_odnoklassniki_bgcolor }}" placeholder="#ee8208" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_hover_background_color }}</label><br>
+													<input type="text" name="module_soshare_odnoklassniki_hover_bgcolor" value="{{ module_soshare_odnoklassniki_hover_bgcolor }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_border_color }}</label><br>
+													<input type="text" name="module_soshare_odnoklassniki_border_color" value="{{ module_soshare_odnoklassniki_border_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_hover_border_color }}</label><br>
+													<input type="text" name="module_soshare_odnoklassniki_hover_border_color" value="{{ module_soshare_odnoklassniki_hover_border_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_icon_color }}</label><br>
+													<input type="text" name="module_soshare_odnoklassniki_icon_color" value="{{ module_soshare_odnoklassniki_icon_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_hover_icon_color }}</label><br>
+													<input type="text" name="module_soshare_odnoklassniki_hover_icon_color" value="{{ module_soshare_odnoklassniki_hover_icon_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_button_view }}</label><br>
+													<select name="module_soshare_odnoklassniki_view" id="input-text-align" class="form-control">
+													<option value="0" {{ "0" == module_soshare_odnoklassniki_view ? "selected" : "" }}>{{ entry_button_icon }}</option>
+													<option value="1" {{ "1" == module_soshare_odnoklassniki_view ? "selected" : "" }}>{{ entry_button_text }}</option>
+													<option value="2" {{ "2" == module_soshare_odnoklassniki_view ? "selected" : "" }}>{{ entry_button_both }}</option>
+													</select>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_tooltip_title }} - Pro</label><br>
+													<input type="text" readonly class="form-control"/>
+												</div>
+											</div>
+										</div>
+                    <div class="platform-tab-content">
+											<center><h3><i class="fab fa-pinterest" aria-hidden="true" style="color:#bd081c;"></i> {{ text_pinterest }}</h3></center><hr class="title-seperator">
+											<div class="row">
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+													<label class="control-label" for="input-pinterest-status">{{ entry_pinterest_status }}</label><br>
+													{% if (module_soshare_pinterest_status == 1) %}
+													<input type="checkbox" name="module_soshare_pinterest_status" value="1" data-toggle="toggle" data-on="Enabled" data-off="Disabled" checked>
+													{% else %}
+													<input type="checkbox" name="module_soshare_pinterest_status" value="1" data-toggle="toggle" data-on="Enabled" data-off="Disabled">
+													{% endif %}
+												</div><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><br></div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_text_color }}</label><br>
+													<input type="text" name="module_soshare_pinterest_text_color" value="{{ module_soshare_pinterest_text_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_hover_text_color }}</label><br>
+													<input type="text" name="module_soshare_pinterest_hover_text_color" value="{{ module_soshare_pinterest_hover_text_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_background_color }}</label><br>
+													<input type="text" name="module_soshare_pinterest_bgcolor" value="{{ module_soshare_pinterest_bgcolor }}" placeholder="#bd081c" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_hover_background_color }}</label><br>
+													<input type="text" name="module_soshare_pinterest_hover_bgcolor" value="{{ module_soshare_pinterest_hover_bgcolor }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_border_color }}</label><br>
+													<input type="text" name="module_soshare_pinterest_border_color" value="{{ module_soshare_pinterest_border_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_hover_border_color }}</label><br>
+													<input type="text" name="module_soshare_pinterest_hover_border_color" value="{{ module_soshare_pinterest_hover_border_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_icon_color }}</label><br>
+													<input type="text" name="module_soshare_pinterest_icon_color" value="{{ module_soshare_pinterest_icon_color }}" placeholder="#ffffff" class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_hover_icon_color }}</label><br>
+													<input type="text" name="module_soshare_pinterest_hover_icon_color" value="{{ module_soshare_pinterest_hover_icon_color }}"				 class="form-control coloris"/>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_button_view }}</label><br>
+													<select name="module_soshare_pinterest_view" id="input-text-align" class="form-control">
+													<option value="0" {{ "0" == module_soshare_pinterest_view ? "selected" : "" }}>{{ entry_button_icon }}</option>
+													<option value="1" {{ "1" == module_soshare_pinterest_view ? "selected" : "" }}>{{ entry_button_text }}</option>
+													<option value="2" {{ "2" == module_soshare_pinterest_view ? "selected" : "" }}>{{ entry_button_both }}</option>
+													</select>
+												</div>
+												<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+													<label class="control-label">{{ entry_tooltip_title }} - Pro</label><br>
+													<input type="text" readonly class="form-control"/>
+												</div>
+											</div>
+										</div>
+                    <div class="platform-tab-content">
+											<center><h3><i class="fab fa-get-pocket" aria-hidden="true" style="color:#ef3f56;"></i> {{ text_pocket }} - Pro</h3></center><hr class="title-seperator">
+											<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+                      <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+                      </div></div>
+										</div>
+                    <div class="platform-tab-content">
+											<center><h3><i class="fab fa-reddit" aria-hidden="true" style="color:#ff4500;"></i> {{ text_reddit }} - Pro</h3></center><hr class="title-seperator">
+											<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+                      <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+                      </div></div>
+										</div>
+										<div class="platform-tab-content">
+											<center><h3><i class="fab fa-telegram" aria-hidden="true" style="color:#0088cc;"></i> {{ text_telegram }} - Pro</h3></center><hr class="title-seperator">
+											<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+                      <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+                      </div></div>
+										</div>
+										<div class="platform-tab-content">
+											<center><h3><i class="fab fa-twitter" aria-hidden="true" style="color:#1da1f2;"></i> {{ text_twitter }} - Pro</h3></center><hr class="title-seperator">
+											<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+                      <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+                      </div></div>
+										</div>
+                    <div class="platform-tab-content">
+											<center><h3><i class="fab fa-vk" aria-hidden="true" style="color:#1da1f2;"></i> {{ text_vkontakte }} - Pro</h3></center><hr class="title-seperator">
+											<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+                      <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+                      </div></div>
+										</div>
+										<div class="platform-tab-content">
+											<center><h3><i class="fab fa-whatsapp" aria-hidden="true" style="color:#128c7e;"></i> {{ text_whatsapp }} - Pro</h3></center><hr class="title-seperator">
+											<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+                      <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+                      </div></div>
+										</div>
+ 								    <div class="platform-tab-content">
+								    	<center><h3><i class="fa fa-sticky-note" aria-hidden="true" style="color:#2dbe60;"></i> {{ text_evernote }} - Pro</h3></center><hr class="title-seperator">
+								    	<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+                      <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+                      </div></div>
+								    </div>
+					          <div class="platform-tab-content">
+					             	<center><h3><i class="fab fa-skype" aria-hidden="true" style="color:#00aff0;"></i> {{ text_skype }} - Pro</h3></center><hr class="title-seperator">
+					             	<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+                        <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+                        </div></div>
+					          </div>
+ 				            <div class="platform-tab-content">
+				            	<center><h3><i class="fab fa-tumblr" aria-hidden="true" style="color:#35465c;"></i> {{ text_tumblr }} - Pro</h3></center><hr class="title-seperator">
+				            	<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+                      <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+                      </div></div>
+				            </div>
+ 			              <div class="platform-tab-content">
+			              	<center><h3><i class="fab fa-hacker-news" aria-hidden="true" style="color:#ff4000;"></i> {{ text_hacker_news }} - Pro</h3></center><hr class="title-seperator">
+			              	<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+                      <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+                      </div></div>
+			              </div>
+ 		                <div class="platform-tab-content">
+		                	<center><h3><i class="fab fa-xing" aria-hidden="true" style="color:#026466;"></i> {{ text_xing }} - Pro</h3></center><hr class="title-seperator">
+		                	<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+                      <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+                      </div></div>
+		                </div>
+ 	                  <div class="platform-tab-content">
+	                  	<center><h3><i class="fas fa-at" aria-hidden="true" style="color:#ea4335;"></i> {{ text_email }} - Pro</h3></center><hr class="title-seperator">
+	                  	<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+                      <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+                      </div></div>
+	                  </div>
+                    <div class="platform-tab-content">
+                    	<center><h3><i class="fas fa-print" aria-hidden="true" style="color:#e67e22;"></i> {{ text_print }} - Pro</h3></center><hr class="title-seperator">
+                    	<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+                      <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+                     </div></div>
+                    </div>
+                    <div class="platform-tab-content">
+                    	<center><h3><i class="fas fa-copy" aria-hidden="true" style="color:#1abc9c;"></i> {{ text_copy }} - Pro</h3></center><hr class="title-seperator">
+                    	<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+                      <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+                      </div></div>
+                    </div>
+                    <div class="platform-tab-content">
+                    	<center><h3><i class="fa fa-share-alt" aria-hidden="true" style="color:#6a737b;"></i> {{ text_web_share }} - Pro</h3></center><hr class="title-seperator">
+                    	<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+                      <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+                      </div></div>
+        </div></div></div></div></div>
+<div class="tab-pane form-horizontal" id="tab-font-settings">
+    <div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 font-tab-container">
+	<div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 common-tabs font-tab-menu">
+		<div class="list-group">
+			<a href="#" class="list-group-item active"><i class="fab fa-google"></i> {{ entry_font_google }} - Pro</a>
+			<a href="#" class="list-group-item"><i class="fas fa-font"></i> {{ entry_font_options }} - Pro</a>
+			<a href="#" class="list-group-item"><i class="fas fa-text-width"></i> {{ entry_font_text_align }} - Pro</a>
+		</div>
+	</div>
+<div class="col-lg-10 col-md-10 col-sm-9 col-xs-8 font-tab">
+	<div class="font-tab-content active">
+		<center><h3><i class="fab fa-google"></i> {{ entry_font_google }} - Pro</h3></center><hr class="title-seperator">
+		<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+    <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+    </div></div>
+	</div>
+	<div class="font-tab-content">
+		<center><h3><i class="fas fa-font"></i> {{ entry_font_options }} - Pro</h3></center><hr class="title-seperator">
+		<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+    <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+    </div></div>
+	</div>
+	<div class="font-tab-content">
+		<center><h3><i class="fas fa-text-width"></i> {{ entry_font_text_align }} - Pro</h3></center><hr class="title-seperator">
+		<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+    <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+    </div></div></div></div></div></div></div>
+<div class="tab-pane form-horizontal" id="tab-align-settings">
+	<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 align-tab-container">
+		<div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 common-tabs align-tab-menu">
+			<div class="list-group">
+				<a href="#" class="list-group-item active"><i class="fas fa-arrows-alt"></i> {{ entry_wh_options }} - Pro</a>
+				<a href="#" class="list-group-item"><i class="fas fa-expand-arrows-alt"></i> {{ entry_margin_options }} - Pro</a>
+				<a href="#" class="list-group-item"><i class="fas fa-compress-arrows-alt"></i> {{ entry_padding_options }} - Pro</a>
+				<a href="#" class="list-group-item"><i class="far fa-square"></i> {{ entry_border_options }} - Pro</a>
+				<a href="#" class="list-group-item"><i class="fas fa-map-marker"></i> {{ entry_align_options }} - Pro</a>
+				<a href="#" class="list-group-item"><i class="fas fa-stopwatch"></i> {{ entry_animation_options }} - Pro</a>
+			</div>
+		</div>
+		<div class="col-lg-10 col-md-10 col-sm-9 col-xs-8 align-tab">
+			<div class="align-tab-content active">
+				<center><h3><i class="fas fa-arrows-alt"></i> {{ entry_wh_options }} - Pro</h3></center><hr class="title-seperator">
+				<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+        <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+        </div></div>
+			</div>
+			<div class="align-tab-content">
+				<center><h3><i class="fas fa-expand-arrows-alt"></i> {{ entry_margin_options }} - Pro</h3></center><hr class="title-seperator">
+				<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+        <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+        </div></div>
+			</div>
+			<div class="align-tab-content">
+				<center><h3><i class="fas fa-compress-arrows-alt"></i> {{ entry_padding_options }} - Pro</h3></center><hr class="title-seperator">
+				<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+        <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+        </div></div>
+			</div>
+			<div class="align-tab-content">
+				<center><h3><i class="far fa-square"></i> {{ entry_border_options }} - Pro</h3></center><hr class="title-seperator">
+				<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+        <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+        </div></div>
+			</div>
+			<div class="align-tab-content">
+				<center><h3><i class="fas fa-map-marker"></i> {{ entry_align_options }} - Pro</h3></center><hr class="title-seperator">
+				<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+        <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+        </div></div>
+			</div>
+			<div class="align-tab-content">
+				<center><h3><i class="fas fa-stopwatch"></i> {{ entry_animation_options }} - Pro</h3></center><hr class="title-seperator">
+				<div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h4>It is only available in the Pro version of Social Share Buttons.</h4>
+        <a href="https://www.opencart.com/index.php?route=marketplace/extension/info&extension_id=43608" target="_blank" class="btn btn-success">Buy Pro Version</a>
+        </div></div></div></div></div></div></div>
+<div class="tab-pane form-horizontal" id="tab-responsive-settings">
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 responsive-tab-container">
+			<div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 common-tabs responsive-tab-menu">
+				<div class="list-group">
+					<a href="#" class="list-group-item active"><i class="fas fa-tv"></i> Large Screens - Pro</a>
+					<a href="#" class="list-group-item"><i class="fas fa-desktop"></i> Medium Screens - Pro</a>
+					<a href="#" class="list-group-item"><i class="fas fa-laptop"></i> Small Screens - Pro</a>
+					<a href="#" class="list-group-item"><i class="fas fa-mobile"></i> Mobile Phones - Pro</a>
+				</div>
+			</div>
+			<div class="col-lg-10 col-md-10 col-sm-9 col-xs-8 responsive-tab">
+				<div class="responsive-tab-content active">
+					<center><h3><i class="fas fa-tv"></i> Large Screens - Pro</h3></center><hr class="title-seperator">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<h3>Coming Soon...</h3>
+						</div>
+					</div>
+				</div>
+				<div class="responsive-tab-content">
+					<center><h3><i class="fas fa-desktop"></i> Medium Screens - Pro</h3></center><hr class="title-seperator">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<h3>Coming Soon...</h3>
+						</div>
+					</div>
+				</div>
+				<div class="responsive-tab-content">
+					<center><h3><i class="fas fa-laptop"></i> Small Screens - Pro</h3></center><hr class="title-seperator">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<h3>Coming Soon...</h3>
+						</div>
+					</div>
+				</div>
+				<div class="responsive-tab-content">
+					<center><h3><i class="fas fa-mobile"></i> Mobile Phones - Pro</h3></center><hr class="title-seperator">
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<h3>Coming Soon...</h3>
+						</div>
+					</div></div></div></div></div></div>
+<div class="tab-pane form-horizontal" id="tab-preview">
+<div class="row">
+<div class="col-lg-12"><label>Canvas <span style="color:#ff0000;">&mdash;&mdash;&mdash;</span></label></div><br><br>
+<div class="col-lg-12"><div style="border:1px solid rgba(255,0,0,0.3); height: 300px;" id="preview">
+<style>
+.share-bttns { margin:5px; }
+.share-bttns a { display: inline-block; position: relative; min-width: 16px; padding: 5px 7px; margin-right: 2px; box-sizing: content-box; vertical-align: middle; }
+.share-bttns a:hover { cursor: pointer; }
+.share-bttns .bttn-facebook { color: {{ facebook_text_color }}; background-color: {{ facebook_bgcolor }}; border-color: {{ facebook_border_color }}; }
+.share-bttns .bttn-facebook:hover { color: {{ facebook_hover_text_color }}; background-color: {{ facebook_hover_bgcolor }}; border-color: {{ facebook_hover_border_color }}; }
+.share-bttns .bttn-linkedin { color: {{ linkedin_text_color }}; background-color: {{ linkedin_bgcolor }}; border-color: {{ linkedin_border_color }}; }
+.share-bttns .bttn-linkedin:hover { color: {{ linkedin_hover_text_color }}; background-color: {{ linkedin_hover_bgcolor }}; border-color: {{ linkedin_hover_border_color }}; }
+.share-bttns .bttn-ok { color: {{ odnoklassniki_text_color }}; background-color: {{ odnoklassniki_bgcolor }}; border-color: {{ odnoklassniki_border_color }}; }
+.share-bttns .bttn-ok:hover { color: {{ odnoklassniki_hover_text_color }}; background-color: {{ odnoklassniki_hover_bgcolor }}; border-color: {{ odnoklassniki_hover_border_color }}; }
+.share-bttns .bttn-pinterest { color: {{ pinterest_text_color }}; background-color: {{ pinterest_bgcolor }}; border-color: {{ pinterest_border_color }}; }
+.share-bttns .bttn-pinterest:hover { color: {{ pinterest_hover_text_color }}; background-color: {{ pinterest_hover_bgcolor }}; border-color: {{ pinterest_hover_border_color }}; }
+</style>
+<div class="share-bttns">	
+{% if facebook_status == 1  %}<a class="d-flex flex-wrap bttn-facebook" data-id="fb">{% if facebook_view == 0 or facebook_view == 2 %}<i class="fab fa-facebook-square"></i>{% else %}{% endif %} {% if facebook_view == 1 or facebook_view == 2 %}Facebook{% else %}{% endif %}</a>{% endif %}
+{% if linkedin_status == 1 %}<a class="d-flex flex-wrap bttn-linkedin" data-id="in">{% if linkedin_view == 0 or linkedin_view == 2 %}<i class="fab fa-linkedin"></i>{% else %}{% endif %} {% if linkedin_view == 1 or linkedin_view == 2 %}LinkedIn{% else %}{% endif %}</a>{% endif %}
+{% if odnoklassniki_status == 1 %}<a class="d-flex flex-wrap bttn-ok" data-id="ok">{% if odnoklassniki_view == 0 or odnoklassniki_view == 2 %}<i class="fab fa-odnoklassniki"></i>{% else %}{% endif %} {% if odnoklassniki_view == 1 or odnoklassniki_view == 2 %}Odnoklassniki{% else %}{% endif %}</a>{% endif %}
+{% if pinterest_status == 1 %}<a class="d-flex flex-wrap bttn-pinterest" data-id="pi">{% if pinterest_view == 0 or pinterest_view == 2 %}<i class="fab fa-pinterest"></i>{% else %}{% endif %} {% if pinterest_view == 1 or pinterest_view == 2 %}Pinterest{% endif %}</a>{% endif %}
+</div>
+<script>
+	(function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+    typeof define === 'function' && define.amd ? define(factory) :
+    (global = global || self, global.ShareButtons = factory());
+}(this, function () { 'use strict';
+    var w = window;
+    var d = w.document;
+    function ShareButtons() {
+        var FB_LINK_FORMAT = 'https://www.facebook.com/sharer/sharer.php?u={0}&quote={1}',
+            VK_LINK_FORMAT = 'https://vk.com/share.php?url={0}&title={1}',
+            TW_LINK_FORMAT = 'https://twitter.com/intent/tweet?url={0}&text={1}',
+            TG_LINK_FORMAT = 'https://t.me/share/url?url={0}&text={1}',
+            POCKET_LINK_FORMAT = 'https://getpocket.com/edit?url={0}&title={1}',
+            RE_LINK_FORMAT = 'https://reddit.com/submit?url={0}&title={1}',
+            EV_LINK_FORMAT = 'https://www.evernote.com/clip.action?url={0}&t={1}',
+            IN_LINK_FORMAT = 'https://www.linkedin.com/shareArticle?mini=true&url={0}&title={1}&summary={2}&source={0}',
+            PI_LINK_FORMAT = 'https://pinterest.com/pin/create/button/?url={0}&media={0}&description={1}',
+            SK_LINK_FORMAT = 'https://web.skype.com/share?url={0}&source=button&text={1}',
+            WA_LINK_FORMAT = 'https://wa.me/?text={0}%20{1}',
+            OK_LINK_FORMAT = 'https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&service=odnoklassniki&st.shareUrl={0}',
+            TU_LINK_FORMAT = 'https://www.tumblr.com/widgets/share/tool?posttype=link&title={0}&caption={0}&content={1}&canonicalUrl={1}&shareSource=tumblr_share_button',
+            HN_LINK_FORMAT = 'https://news.ycombinator.com/submitlink?t={0}&u={1}',
+            XI_LINK_FORMAT = 'https://www.xing.com/app/user?op=share;url={0};title={1}',
+            MAIL_LINK_FORMAT = 'mailto:?subject={0}&body={1}',
+            FB_CLASS_NAME = 'fb',
+            VK_CLASS_NAME = 'vk',
+            TW_CLASS_NAME = 'tw',
+            TG_CLASS_NAME = 'tg',
+            PK_CLASS_NAME = 'pk',
+            RE_CLASS_NAME = 're',
+            EV_CLASS_NAME = 'ev',
+            IN_CLASS_NAME = 'in',
+            PI_CLASS_NAME = 'pi',
+            SK_CLASS_NAME = 'sk',
+            WA_CLASS_NAME = 'wa',
+            OK_CLASS_NAME = 'ok',
+            TU_CLASS_NAME = 'tu',
+            HN_CLASS_NAME = 'hn',
+            XI_CLASS_NAME = 'xi',
+            MAIL_CLASS_NAME = 'mail',
+            PRINT_CLASS_NAME = 'print',
+            COPY_CLASS_NAME = 'copy',
+            SHARE_CLASS_NAME = 'share',
+            SHARE_LOG_TAG = 'navigator.share(): ',
+            NOT_SUPPORTED_MESSAGE = 'This feature is not supported on this browser or operating system.';
+        /**
+         * Method for get string in the special format by arguments
+         * from https://wcoder.github.io/notes/string-format-for-string-formating-in-javascript
+         * @param {string} str
+         * @param {Array} args
+         */
+        var stringFormat = function (str, args) {
+            return str.replace(/\{(\d+)\}/g, function (m, n) {
+                return args[n] || m;
+            });
+        };
+        /**
+         * Method for merge array of strings to the special format string
+         * @param {Array} texts
+         */
+        var mergeForTitle = function (texts) {
+            return texts.join(' - ');
+        };
+        /**
+         * Log method for debug
+         * @param {string} text log message
+         */
+        var log = function (text) {
+            w.console.log(text);
+        };
+        /**
+         * Set display=none for elements by selector
+         * @param {string} selector selector of elements
+         */
+        var hideAll = function (selector) {
+            var elements = d.querySelectorAll(selector);
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].style.display = 'none';
+            }
+        };
+        /**
+         * Method for initialize class for all elements
+         */
+        this.i = function () {
+            var i, share = d.querySelectorAll('.share-bttns');
+
+            for (i = share.length; i--;) {
+                initForElement(share[i]);
+            }
+            // Check if navigator.clipboard is supported. If not, hide all share-buttons.
+            if (!w.navigator.clipboard) {
+                hideAll('[data-id="' + COPY_CLASS_NAME + '"]');
+                log('navigator.clipboard(): ' + NOT_SUPPORTED_MESSAGE);
+            }
+            // Check if navigator.share is supported. If not, hide all share-buttons.
+            if (!w.navigator.canShare) {
+                hideAll('[data-id="' + SHARE_CLASS_NAME + '"]');
+                log(SHARE_LOG_TAG + NOT_SUPPORTED_MESSAGE);
+            }
+        };
+        /**
+         * Method for initialize class for all elements
+         * @param {HTMLElement} el Parent container
+         */
+        var initForElement = function (el) {
+            var i, a = el.querySelectorAll('a');
+
+            for (i = a.length; i--;) {
+                prepareLink(a[i], {
+                    id: '',
+                    url: getUrl(el),
+                    title: getTitle(el),
+                    desc: getDesc(el)
+                });
+            }
+        };
+        /**
+         * Method for handling click event to link
+         * @param {HTMLElement} el
+         * @param {Object} options
+         */
+        var prepareLink = function (el, options) {
+            options.id = getAttribute(el, 'data-id');
+            if (options.id) {
+                removeEventListener(el, 'click');
+                addEventListener(el, 'click', options);
+            }
+        };
+        /**
+         * Method for getting url from page or options
+         * @param {HTMLElement} share
+         */
+        var getUrl = function (share) {
+            return getAttribute(share, 'data-url') || w.location.href || ' ';
+        };
+        /**
+         * Method for getting title from page or options
+         * @param {HTMLElement} share
+         */
+        var getTitle = function (share) {
+            return getAttribute(share, 'data-title') || d.title || ' ';
+        };
+        /**
+         * Method for getting description from page or options
+         * @param {HTMLElement} share
+         */
+        var getDesc = function (share) {
+            var metaDesc = d.querySelector('meta[name=description]');
+            return getAttribute(share, 'data-desc') || (metaDesc && getAttribute(metaDesc, 'content')) || ' ';
+        };
+        /**
+         * Counter for generated cache's share button's index.
+         * This to reference added share buttons' listeners.
+         */
+        var refCounter = 0;
+        /**
+         * List of added listeners' for share buttons.
+         * This to index listeners' for update or removal purpose.
+         */
+        var listenersCache = {};
+       /**
+        * Method for detaching event to the element
+        * @param {HTMLElement} el
+        * @param {string} eventName
+        */
+        var removeEventListener = function (el, eventName) {
+            var cachedRef = el.getAttribute('data-sharebtn-ref');
+
+            if (cachedRef) {
+                if (el.removeEventListener) {
+                    el.removeEventListener(eventName, listenersCache[cachedRef]);
+                } else {
+                    el.detachEvent('on' + eventName, listenersCache[cachedRef+'ie']);
+                }
+            }
+        };
+       /**
+        * Method for attaching event to the element
+        * @param {HTMLElement} el
+        * @param {string} eventName
+        * @param {Object} opt
+        */
+        var addEventListener = function (el, eventName, opt) {
+            var handler = function () {
+                share(opt.id, opt.url, opt.title, opt.desc);
+            };
+            var iehandler = function () {
+                handler.call(el);
+            };
+            var cachedRef = el.getAttribute('data-sharebtn-ref');
+
+            if (!cachedRef) {
+                cachedRef = ++refCounter;
+                el.setAttribute('data-sharebtn-ref', cachedRef);
+            }
+
+            listenersCache[cachedRef] = handler;
+            listenersCache[cachedRef+'ie'] = iehandler;
+
+            if (el.addEventListener) {
+                el.addEventListener(eventName, handler);
+            } else {
+                el.attachEvent('on' + eventName, iehandler);
+            }
+        };
+
+        /**
+         * Method for get attribute value by name
+         * @param {HTMLElement} el
+         * @param {string} attrName
+         */
+        var getAttribute = function (el, attrName) {
+            return el.getAttribute(attrName);
+        };
+
+        /**
+         * Method for encoding text to URL format
+         * @param {string} text
+         */
+        var encode = function (text) {
+            return encodeURIComponent(text);
+        };
+
+        /**
+         * Method for decoding URL format to text
+         * @param {string} text
+         */
+        var decode = function (text) {
+            return decodeURIComponent(text);
+        };
+
+        /**
+         * Method for handling chosen links
+         * @param {string} id
+         * @param {string} urlDef
+         * @param {string} titleDef
+         * @param {string} descDef
+         */
+        var share = function (id, urlDef, titleDef, descDef) {
+            var url = encode(urlDef),
+                desc = encode(descDef),
+                title = encode(titleDef),
+                text = title || desc || '';
+
+            switch (id) {
+            case FB_CLASS_NAME:
+                popupCenter(
+                    stringFormat(FB_LINK_FORMAT, [url, title]),
+                    titleDef);
+                break;
+
+            case VK_CLASS_NAME:
+                popupCenter(
+                    stringFormat(VK_LINK_FORMAT, [
+                        url,
+                        mergeForTitle([title, desc])
+                    ]),
+                    titleDef);
+                break;
+
+            case TW_CLASS_NAME:
+                popupCenter(
+                    stringFormat(TW_LINK_FORMAT, [
+                        url,
+                        mergeForTitle([title, desc])
+                    ]),
+                    titleDef);
+                break;
+
+            case TG_CLASS_NAME:
+                popupCenter(
+                    stringFormat(TG_LINK_FORMAT, [
+                        url,
+                        mergeForTitle([title, desc])
+                    ]),
+                    titleDef);
+                break;
+
+            case PK_CLASS_NAME:
+                popupCenter(
+                    stringFormat(POCKET_LINK_FORMAT, [
+                        url,
+                        mergeForTitle([title, desc])
+                    ]),
+                    titleDef);
+                break;
+
+            case RE_CLASS_NAME:
+                popupCenter(
+                    stringFormat(RE_LINK_FORMAT, [url, title]),
+                    titleDef);
+                break;
+
+            case EV_CLASS_NAME:
+                popupCenter(
+                    stringFormat(EV_LINK_FORMAT, [url, title]),
+                    titleDef);
+                break;
+
+            case IN_CLASS_NAME:
+                popupCenter(
+                    stringFormat(IN_LINK_FORMAT, [
+                        url,
+                        title,
+                        mergeForTitle([title, desc])
+                    ]),
+                    titleDef);
+                break;
+
+            case PI_CLASS_NAME:
+                popupCenter(
+                    stringFormat(PI_LINK_FORMAT, [
+                        url,
+                        mergeForTitle([title, desc])
+                    ]),
+                    titleDef);
+                break;
+
+            case SK_CLASS_NAME:
+                popupCenter(
+                    stringFormat(SK_LINK_FORMAT, [
+                        url,
+                        mergeForTitle([title, desc])
+                    ]),
+                    titleDef);
+                break;
+
+            case WA_CLASS_NAME:
+                popupCenter(
+                    stringFormat(WA_LINK_FORMAT, [
+                        mergeForTitle([title, desc]),
+                        url
+                    ]),
+                    titleDef);
+                break;
+
+            case OK_CLASS_NAME:
+                popupCenter(
+                    stringFormat(OK_LINK_FORMAT, [ url ]),
+                    titleDef);
+                break;
+
+            case TU_CLASS_NAME:
+                popupCenter(
+                    stringFormat(TU_LINK_FORMAT, [
+                        mergeForTitle([title, desc]),
+                        url
+                    ]),
+                    titleDef);
+                break;
+
+            case HN_CLASS_NAME:
+                popupCenter(
+                    stringFormat(HN_LINK_FORMAT, [
+                        mergeForTitle([title, desc]),
+                        url
+                    ]),
+                    titleDef);
+                break;
+
+            case XI_CLASS_NAME:
+                popupCenter(
+                    stringFormat(XI_LINK_FORMAT, [
+                        url,
+                        mergeForTitle([title, desc])
+                    ]),
+                    titleDef);
+                break;
+
+            case MAIL_CLASS_NAME:
+                if (title.length > 0 && desc.length > 0) {
+                    text = mergeForTitle([title, desc]);
+                }
+                if (url.length > 0) {
+                    text = text + ' / ' + url;
+                }
+
+                w.location.href = stringFormat(MAIL_LINK_FORMAT, [title, text]);
+                break;
+
+            case PRINT_CLASS_NAME:
+                w.print();
+                break;
+
+            case COPY_CLASS_NAME:
+                w.navigator.clipboard.writeText(decode(url));
+                break;
+
+            case SHARE_CLASS_NAME:
+                text = decode(mergeForTitle([title, desc]));
+                var shareData = {
+                    title: document.title,
+                    text: text,
+                    url: decode(url),
+                };
+
+                w.navigator.share(shareData)
+                    .then(function () {})
+                    .catch(function (err) {
+                        log(SHARE_LOG_TAG + 'Error', err);
+                    });
+                break;
+
+            default:
+                break;
+            }
+        };
+
+        /**
+         * Method for opening popup window
+         * @param {string} url
+         */
+        var popupCenter = function (url, title) {
+            var _w = 600,
+                _h = 400,
+                dualScreenLeft = typeof w.screenLeft !== 'undefined' ? w.screenLeft : screen.left,
+                dualScreenTop = typeof w.screenTop !== 'undefined' ? w.screenTop : screen.top,
+                width = w.innerWidth || d.documentElement.clientWidth || screen.width,
+                height = w.innerHeight || d.documentElement.clientHeight || screen.height,
+                left = ((width / 2) - (_w / 2)) + dualScreenLeft,
+                top = ((height / 3) - (_h / 3)) + dualScreenTop,
+                windowFormat = 'resizable,toolbar=yes,location=yes,scrollbars=yes,menubar=yes,width={0},height={1},top={2},left={3}',
+                newWindow = w.open(url, '', stringFormat(windowFormat, [_w, _h, top, left]));
+
+            if (newWindow !== null && newWindow.focus) {
+                newWindow.focus();
+            }
+        };
+    }
+    // start
+    var shareButtons = new ShareButtons();
+    shareButtons.i();
+
+    return {
+        update: function () {
+            shareButtons.i();
+        }
+    };
+
+}));
+</script>
+</div>
+</div>
+</div>
+</div>
+
+<div class="tab-pane form-horizontal" id="tab-support">
+    <div class="row">
+    	<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7" style="margin-bottom: 30px;">
+				<label class="control-label"><h3>About Social Share Buttons</h3></label><br>
+				<div>
+				Our <b>Social Share Buttons</b> module will be constantly updated over the next few months and 
+				brand new features will be added.<br>
+				Best regards to all of you.
+				</div><br>
+        <label class="control-label"><h3>Contact Us</h3></label><br>
+        <div>
+        <b><i class="fa fa-envelope" aria-hidden="true"></i> nngosoftware@gmail.com</b><br><br>
+        <b><i class="fa fa-clock-o" aria-hidden="true"></i> Monday - Saturday: 11:00 AM - 06:00 PM</b><br><br>
+        <button id="telegram-support" class="btn btn-primary" style="margin-bottom: 10px;">
+        <i class="fa fa-paper-plane" aria-hidden="true"></i> NNGO Software Telegram Support
+        </button>
+        </div>
+			</div>
+			<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="margin-bottom: 30px;">
+        <img src="/admin/view/images/nngo-support.png" class="img-responsive" alt="NNGO Software Support" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+        <div style="text-align: center;">
+        <span style="font-size: 12px;"><b>NNGO Software Support</b></span>
+        </div>
+			</div>
+      </div>
+    </div>
+</div>
+</form>
+</div>
+</div>
+</div>
+<script>
+$(document).ready(function() { $('#telegram-support').click(function() { window.open('https://t.me/nngosoftware', '_blank'); }); });
+$(document).ready(function() {
+    $("div.main-tab-menu>div.list-group>a").click(function(e) {
+        e.preventDefault();
+        $(this).siblings('a.active').removeClass("active");
+        $(this).addClass("active");
+        var index = $(this).index();
+        $("div.main-tab>div.main-tab-content").removeClass("active");
+        $("div.main-tab>div.main-tab-content").eq(index).addClass("active");
+    });
+});
+$(document).ready(function() {
+    $("div.platform-tab-menu>div.list-group>a").click(function(e) {
+        e.preventDefault();
+        $(this).siblings('a.active').removeClass("active");
+        $(this).addClass("active");
+        var index = $(this).index();
+        $("div.platform-tab>div.platform-tab-content").removeClass("active");
+        $("div.platform-tab>div.platform-tab-content").eq(index).addClass("active");
+    });
+});
+$(document).ready(function() {
+    $("div.font-tab-menu>div.list-group>a").click(function(e) {
+        e.preventDefault();
+        $(this).siblings('a.active').removeClass("active");
+        $(this).addClass("active");
+        var index = $(this).index();
+        $("div.font-tab>div.font-tab-content").removeClass("active");
+        $("div.font-tab>div.font-tab-content").eq(index).addClass("active");
+    });
+});
+$(document).ready(function() {
+    $("div.align-tab-menu>div.list-group>a").click(function(e) {
+        e.preventDefault();
+        $(this).siblings('a.active').removeClass("active");
+        $(this).addClass("active");
+        var index = $(this).index();
+        $("div.align-tab>div.align-tab-content").removeClass("active");
+        $("div.align-tab>div.align-tab-content").eq(index).addClass("active");
+    });
+});
+$(document).ready(function() {
+	$("div.responsive-tab-menu>div.list-group>a").click(function(e) {
+		e.preventDefault();
+		$(this).siblings('a.active').removeClass("active");
+		$(this).addClass("active");
+		var index = $(this).index();
+		$("div.responsive-tab>div.responsive-tab-content").removeClass("active");
+		$("div.responsive-tab>div.responsive-tab-content").eq(index).addClass("active");
+	});
+});
+</script>
+{{ footer }}
+</div>
