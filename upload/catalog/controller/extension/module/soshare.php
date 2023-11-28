@@ -32,5 +32,23 @@ class ControllerExtensionModuleSoshare extends Controller
         $data['pinterest_hover_bgcolor'] = $this->config->get($this->prefix . 'soshare_pinterest_hover_bgcolor');$data['pinterest_border_color'] = $this->config->get($this->prefix . 'soshare_pinterest_border_color');
         $data['pinterest_hover_border_color'] = $this->config->get($this->prefix . 'soshare_pinterest_hover_border_color');$data['pinterest_icon_color'] = $this->config->get($this->prefix . 'soshare_pinterest_icon_color');
         $data['pinterest_hover_icon_color'] = $this->config->get($this->prefix . 'soshare_pinterest_hover_icon_color');$data['pinterest_view'] = $this->config->get($this->prefix . 'soshare_pinterest_view');
-        $data['tooltip_status'] = $this->config->get($this->prefix . 'soshare_tooltip_status');if (isset($data['title'])) {$data['heading_title'] = $data['title'];}return $this->load->view('extension/module/soshare', $data);}}
+        $data['pocket_status'] = $this->config->get($this->prefix . 'soshare_pocket_status');$data['pocket_text_color'] = $this->config->get($this->prefix . 'soshare_pocket_text_color');
+        $data['pocket_hover_text_color'] = $this->config->get($this->prefix . 'soshare_pocket_hover_text_color');$data['pocket_bgcolor'] = $this->config->get($this->prefix . 'soshare_pocket_bgcolor');
+        $data['pocket_hover_bgcolor'] = $this->config->get($this->prefix . 'soshare_pocket_hover_bgcolor');$data['pocket_border_color'] = $this->config->get($this->prefix . 'soshare_pocket_border_color');
+        $data['pocket_hover_border_color'] = $this->config->get($this->prefix . 'soshare_pocket_hover_border_color');$data['pocket_icon_color'] = $this->config->get($this->prefix . 'soshare_pocket_icon_color');
+        $data['pocket_hover_icon_color'] = $this->config->get($this->prefix . 'soshare_pocket_hover_icon_color');$data['pocket_view'] = $this->config->get($this->prefix . 'soshare_pocket_view');
+        $data['whatsapp_status'] = $this->config->get($this->prefix . 'soshare_whatsapp_status');$data['whatsapp_text_color'] = $this->config->get($this->prefix . 'soshare_whatsapp_text_color');
+        $data['whatsapp_hover_text_color'] = $this->config->get($this->prefix . 'soshare_whatsapp_hover_text_color');$data['whatsapp_bgcolor'] = $this->config->get($this->prefix . 'soshare_whatsapp_bgcolor');
+        $data['whatsapp_hover_bgcolor'] = $this->config->get($this->prefix . 'soshare_whatsapp_hover_bgcolor');$data['whatsapp_border_color'] = $this->config->get($this->prefix . 'soshare_whatsapp_border_color');
+        $data['whatsapp_hover_border_color'] = $this->config->get($this->prefix . 'soshare_whatsapp_hover_border_color');$data['whatsapp_icon_color'] = $this->config->get($this->prefix . 'soshare_whatsapp_icon_color');
+        $data['whatsapp_hover_icon_color'] = $this->config->get($this->prefix . 'soshare_whatsapp_hover_icon_color');$data['whatsapp_view'] = $this->config->get($this->prefix . 'soshare_whatsapp_view');
+
+        $data['tooltip_status'] = $this->config->get($this->prefix . 'soshare_tooltip_status');
+
+        if (isset($data['title'])) {
+            $data['heading_title'] = $data['title'];
+            
+        }
+
+        return $this->load->view('extension/module/soshare', $data);}}
 }

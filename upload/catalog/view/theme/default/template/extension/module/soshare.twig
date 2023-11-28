@@ -1,17 +1,24 @@
 <div class="module-soshare">
-    {% if heading_title %} 
+    {% if heading_title %}
+
+    {{ 'Distribuie pe:'}} 
+
     <style>
       .share-bttns { margin:5px; }.share-bttns a { display: inline-block; position: relative; min-width: 16px; padding: 5px 7px; margin-right: 2px; vertical-align: middle; }.share-bttns a:hover { cursor: pointer; }
       .share-bttns .bttn-facebook { color: {{ facebook_text_color }}; background-color: {{ facebook_bgcolor }}; border-color: {{ facebook_border_color }}; }.share-bttns .bttn-facebook:hover { color: {{ facebook_hover_text_color }}; background-color: {{ facebook_hover_bgcolor }}; border-color: {{ facebook_hover_border_color }}; }
       .share-bttns .bttn-linkedin { color: {{ linkedin_text_color }}; background-color: {{ linkedin_bgcolor }}; border-color: {{ linkedin_border_color }}; }.share-bttns .bttn-linkedin:hover { color: {{ linkedin_hover_text_color }}; background-color: {{ linkedin_hover_bgcolor }}; border-color: {{ linkedin_hover_border_color }}; }
       .share-bttns .bttn-ok { color: {{ odnoklassniki_text_color }}; background-color: {{ odnoklassniki_bgcolor }}; border-color: {{ odnoklassniki_border_color }}; }.share-bttns .bttn-ok:hover { color: {{ odnoklassniki_hover_text_color }}; background-color: {{ odnoklassniki_hover_bgcolor }}; border-color: {{ odnoklassniki_hover_border_color }}; }
       .share-bttns .bttn-pinterest { color: {{ pinterest_text_color }}; background-color: {{ pinterest_bgcolor }}; border-color: {{ pinterest_border_color }}; }.share-bttns .bttn-pinterest:hover { color: {{ pinterest_hover_text_color }}; background-color: {{ pinterest_hover_bgcolor }}; border-color: {{ pinterest_hover_border_color }}; }
+      .share-bttns .bttn-pocket { color: {{ pocket_text_color }}; background-color: {{ pocket_bgcolor }}; border-color: {{ pocket_border_color }}; }.share-bttns .bttn-pocket:hover { color: {{ pocket_hover_text_color }}; background-color: {{ pocket_hover_bgcolor }}; border-color: {{ pocket_hover_border_color }}; }
+      .share-bttns .bttn-whatsapp { color: {{ whatsapp_text_color }}; background-color: {{ whatsapp_bgcolor }}; border-color: {{ whatsapp_border_color }}; }.share-bttns .bttn-whatsapp:hover { color: {{ whatsapp_hover_text_color }}; background-color: {{ whatsapp_hover_bgcolor }}; border-color: {{ whatsapp_hover_border_color }}; }
       </style>
       <div class="share-bttns">
-      {% if facebook_status == 1  %}<a class="d-flex flex-wrap bttn-facebook" data-id="fb">{% if facebook_view == 0 or facebook_view == 2 %}<i class="fab fa-facebook-square"></i>{% else %}{% endif %} {% if facebook_view == 1 or facebook_view == 2 %}Facebook{% else %}{% endif %}</a>{% endif %}
-      {% if linkedin_status == 1 %}<a class="d-flex flex-wrap bttn-linkedin" data-id="in">{% if linkedin_view == 0 or linkedin_view == 2 %}<i class="fab fa-linkedin"></i>{% else %}{% endif %} {% if linkedin_view == 1 or linkedin_view == 2 %}LinkedIn{% else %}{% endif %}</a>{% endif %}
-      {% if odnoklassniki_status == 1 %}<a class="d-flex flex-wrap bttn-ok" data-id="ok">{% if odnoklassniki_view == 0 or odnoklassniki_view == 2 %}<i class="fab fa-odnoklassniki"></i>{% else %}{% endif %} {% if odnoklassniki_view == 1 or odnoklassniki_view == 2 %}Odnoklassniki{% else %}{% endif %}</a>{% endif %}
-      {% if pinterest_status == 1 %}<a class="d-flex flex-wrap bttn-pinterest" data-id="pi">{% if pinterest_view == 0 or pinterest_view == 2 %}<i class="fab fa-pinterest"></i>{% else %}{% endif %} {% if pinterest_view == 1 or pinterest_view == 2 %}Pinterest{% endif %}</a>{% endif %}
+      {% if facebook_status == 1  %}<a class="d-flex flex-wrap bttn-facebook" data-id="fb">{% if facebook_view == 0 or facebook_view == 2 %}<i class="fa fa-facebook-square"></i>{% else %}{% endif %} {% if facebook_view == 1 or facebook_view == 2 %}Facebook{% else %}{% endif %}</a>{% endif %}
+      {% if linkedin_status == 1 %}<a class="d-flex flex-wrap bttn-linkedin" data-id="in">{% if linkedin_view == 0 or linkedin_view == 2 %}<i class="fa fa-linkedin"></i>{% else %}{% endif %} {% if linkedin_view == 1 or linkedin_view == 2 %}LinkedIn{% else %}{% endif %}</a>{% endif %}
+      {% if odnoklassniki_status == 1 %}<a class="d-flex flex-wrap bttn-ok" data-id="ok">{% if odnoklassniki_view == 0 or odnoklassniki_view == 2 %}<i class="fa fa-odnoklassniki"></i>{% else %}{% endif %} {% if odnoklassniki_view == 1 or odnoklassniki_view == 2 %}Odnoklassniki{% else %}{% endif %}</a>{% endif %}
+      {% if pinterest_status == 1 %}<a class="d-flex flex-wrap bttn-pinterest" data-id="pi">{% if pinterest_view == 0 or pinterest_view == 2 %}<i class="fa fa-pinterest"></i>{% else %}{% endif %} {% if pinterest_view == 1 or pinterest_view == 2 %}Pinterest{% endif %}</a>{% endif %}
+      {% if pocket_status == 1 %}<a class="d-flex flex-wrap bttn-pocket" data-id="pk">{% if pocket_view == 0 or pocket_view == 2 %}<i class="fa fa-get-pocket"></i>{% else %}{% endif %} {% if pocket_view == 1 or pocket_view == 2 %}Pocket{% endif %}</a>{% endif %}
+      {% if whatsapp_status == 1 %}<a class="d-flex flex-wrap bttn-whatsapp" data-id="wa">{% if whatsapp_view == 0 or whatsapp_view == 2 %}<i class="fa fa-whatsapp"></i>{% else %}{% endif %} {% if whatsapp_view == 1 or whatsapp_view == 2 %}Whatsapp{% endif %}</a>{% endif %}
       </div>
       <script>
         (function (global, factory) {

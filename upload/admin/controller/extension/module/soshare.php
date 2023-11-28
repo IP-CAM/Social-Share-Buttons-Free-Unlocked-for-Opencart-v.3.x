@@ -68,15 +68,28 @@ class ControllerExtensionModuleSoshare extends Controller {
             'href' => $this->url->link('extension/module/soshare', $this->token_var . '=' . $this->session->data[$this->token_var], true)
         );
         $this->load->model('extension/module/soshare');
+
         $data['prefix'] = $this->prefix;
+
         $data['token_var'] = $this->token_var;
+
         $data[$this->token_var] = $this->session->data[$this->token_var];
+
         $data['action'] = $this->url->link('extension/module/soshare', $this->token_var . '=' . $this->session->data[$this->token_var], true);
+
         $data['cancel'] = $this->url->link($this->extension_var . '/extension', $this->token_var . '=' . $this->session->data[$this->token_var] . '&type=module', true);
+
         $data['text_info'] = sprintf($this->language->get('text_info'), $this->version);
-        if (isset($this->request->post[$this->prefix . 'soshare_status'])) {$data[$this->prefix . 'soshare_status'] = $this->request->post[$this->prefix . 'soshare_status'];} else {$data[$this->prefix . 'soshare_status'] = $this->config->get($this->prefix . 'soshare_status');}
+
+        if (isset($this->request->post[$this->prefix . 'soshare_status'])) {
+            $data[$this->prefix . 'soshare_status'] = $this->request->post[$this->prefix . 'soshare_status'];
+        } else {
+            $data[$this->prefix . 'soshare_status'] = $this->config->get($this->prefix . 'soshare_status');
+        }
+
         if (isset($this->request->post[$this->prefix . 'soshare_name'])) {$data[$this->prefix . 'soshare_name'] = $this->request->post[$this->prefix . 'soshare_name'];} else {$data[$this->prefix . 'soshare_name'] = $this->config->get($this->prefix . 'soshare_name');}
         if (isset($this->request->post[$this->prefix . 'soshare_store_name'])) {$data[$this->prefix . 'soshare_store_name'] = $this->request->post[$this->prefix . 'soshare_store_name'];} else {$data[$this->prefix . 'soshare_store_name'] = $this->config->get($this->prefix . 'soshare_store_name');}
+
         if (isset($this->request->post[$this->prefix . 'soshare_facebook_status'])) {$data[$this->prefix . 'soshare_facebook_status'] = $this->request->post[$this->prefix . 'soshare_facebook_status'];} else {$data[$this->prefix . 'soshare_facebook_status'] = $this->config->get($this->prefix . 'soshare_facebook_status');}
         if (isset($this->request->post[$this->prefix . 'soshare_facebook_text_color'])) {$data[$this->prefix . 'soshare_facebook_text_color'] = $this->request->post[$this->prefix . 'soshare_facebook_text_color'];} else {$data[$this->prefix . 'soshare_facebook_text_color'] = $this->config->get($this->prefix . 'soshare_facebook_text_color');}
         if (isset($this->request->post[$this->prefix . 'soshare_facebook_hover_text_color'])) {$data[$this->prefix . 'soshare_facebook_hover_text_color'] = $this->request->post[$this->prefix . 'soshare_facebook_hover_text_color'];} else {$data[$this->prefix . 'soshare_facebook_hover_text_color'] = $this->config->get($this->prefix . 'soshare_facebook_hover_text_color');}
@@ -107,6 +120,7 @@ class ControllerExtensionModuleSoshare extends Controller {
         if (isset($this->request->post[$this->prefix . 'soshare_odnoklassniki_icon_color'])) {$data[$this->prefix . 'soshare_odnoklassniki_icon_color'] = $this->request->post[$this->prefix . 'soshare_odnoklassniki_icon_color'];} else {$data[$this->prefix . 'soshare_odnoklassniki_icon_color'] = $this->config->get($this->prefix . 'soshare_odnoklassniki_icon_color');}
         if (isset($this->request->post[$this->prefix . 'soshare_odnoklassniki_hover_icon_color'])) {$data[$this->prefix . 'soshare_odnoklassniki_hover_icon_color'] = $this->request->post[$this->prefix . 'soshare_odnoklassniki_hover_icon_color'];} else {$data[$this->prefix . 'soshare_odnoklassniki_hover_icon_color'] = $this->config->get($this->prefix . 'soshare_odnoklassniki_hover_icon_color');}
         if (isset($this->request->post[$this->prefix . 'soshare_odnoklassniki_view'])) {$data[$this->prefix . 'soshare_odnoklassniki_view'] = $this->request->post[$this->prefix . 'soshare_odnoklassniki_view'];} else {$data[$this->prefix . 'soshare_odnoklassniki_view'] = $this->config->get($this->prefix . 'soshare_odnoklassniki_view');}
+
         if (isset($this->request->post[$this->prefix . 'soshare_pinterest_status'])) {$data[$this->prefix . 'soshare_pinterest_status'] = $this->request->post[$this->prefix . 'soshare_pinterest_status'];} else {$data[$this->prefix . 'soshare_pinterest_status'] = $this->config->get($this->prefix . 'soshare_pinterest_status');}
         if (isset($this->request->post[$this->prefix . 'soshare_pinterest_text_color'])) {$data[$this->prefix . 'soshare_pinterest_text_color'] = $this->request->post[$this->prefix . 'soshare_pinterest_text_color'];} else {$data[$this->prefix . 'soshare_pinterest_text_color'] = $this->config->get($this->prefix . 'soshare_pinterest_text_color');}
         if (isset($this->request->post[$this->prefix . 'soshare_pinterest_hover_text_color'])) {$data[$this->prefix . 'soshare_pinterest_hover_text_color'] = $this->request->post[$this->prefix . 'soshare_pinterest_hover_text_color'];} else {$data[$this->prefix . 'soshare_pinterest_hover_text_color'] = $this->config->get($this->prefix . 'soshare_pinterest_hover_text_color');}
@@ -117,28 +131,76 @@ class ControllerExtensionModuleSoshare extends Controller {
         if (isset($this->request->post[$this->prefix . 'soshare_pinterest_icon_color'])) {$data[$this->prefix . 'soshare_pinterest_icon_color'] = $this->request->post[$this->prefix . 'soshare_pinterest_icon_color'];} else {$data[$this->prefix . 'soshare_pinterest_icon_color'] = $this->config->get($this->prefix . 'soshare_pinterest_icon_color');}
         if (isset($this->request->post[$this->prefix . 'soshare_pinterest_hover_icon_color'])) {$data[$this->prefix . 'soshare_pinterest_hover_icon_color'] = $this->request->post[$this->prefix . 'soshare_pinterest_hover_icon_color'];} else {$data[$this->prefix . 'soshare_pinterest_hover_icon_color'] = $this->config->get($this->prefix . 'soshare_pinterest_hover_icon_color');}
         if (isset($this->request->post[$this->prefix . 'soshare_pinterest_view'])) {$data[$this->prefix . 'soshare_pinterest_view'] = $this->request->post[$this->prefix . 'soshare_pinterest_view'];} else {$data[$this->prefix . 'soshare_pinterest_view'] = $this->config->get($this->prefix . 'soshare_pinterest_view');}
+
+        if (isset($this->request->post[$this->prefix . 'soshare_pocket_status'])) {$data[$this->prefix . 'soshare_pocket_status'] = $this->request->post[$this->prefix . 'soshare_pocket_status'];} else {$data[$this->prefix . 'soshare_pocket_status'] = $this->config->get($this->prefix . 'soshare_pocket_status');}
+        if (isset($this->request->post[$this->prefix . 'soshare_pocket_text_color'])) {$data[$this->prefix . 'soshare_pocket_text_color'] = $this->request->post[$this->prefix . 'soshare_pocket_text_color'];} else {$data[$this->prefix . 'soshare_pocket_text_color'] = $this->config->get($this->prefix . 'soshare_pocket_text_color');}
+        if (isset($this->request->post[$this->prefix . 'soshare_pocket_hover_text_color'])) {$data[$this->prefix . 'soshare_pocket_hover_text_color'] = $this->request->post[$this->prefix . 'soshare_pocket_hover_text_color'];} else {$data[$this->prefix . 'soshare_pocket_hover_text_color'] = $this->config->get($this->prefix . 'soshare_pocket_hover_text_color');}
+        if (isset($this->request->post[$this->prefix . 'soshare_pocket_bgcolor'])) {$data[$this->prefix . 'soshare_pocket_bgcolor'] = $this->request->post[$this->prefix . 'soshare_pocket_bgcolor'];} else {$data[$this->prefix . 'soshare_pocket_bgcolor'] = $this->config->get($this->prefix . 'soshare_pocket_bgcolor');}
+        if (isset($this->request->post[$this->prefix . 'soshare_pocket_hover_bgcolor'])) {$data[$this->prefix . 'soshare_pocket_hover_bgcolor'] = $this->request->post[$this->prefix . 'soshare_pocket_hover_bgcolor'];} else {$data[$this->prefix . 'soshare_pocket_hover_bgcolor'] = $this->config->get($this->prefix . 'soshare_pocket_hover_bgcolor');}
+        if (isset($this->request->post[$this->prefix . 'soshare_pocket_border_color'])) {$data[$this->prefix . 'soshare_pocket_border_color'] = $this->request->post[$this->prefix . 'soshare_pocket_border_color'];} else {$data[$this->prefix . 'soshare_pocket_border_color'] = $this->config->get($this->prefix . 'soshare_pocket_border_color');}
+        if (isset($this->request->post[$this->prefix . 'soshare_pocket_hover_border_color'])) {$data[$this->prefix . 'soshare_pocket_hover_border_color'] = $this->request->post[$this->prefix . 'soshare_pocket_hover_border_color'];} else {$data[$this->prefix . 'soshare_pocket_hover_border_color'] = $this->config->get($this->prefix . 'soshare_pocket_hover_border_color');}
+        if (isset($this->request->post[$this->prefix . 'soshare_pocket_icon_color'])) {$data[$this->prefix . 'soshare_pocket_icon_color'] = $this->request->post[$this->prefix . 'soshare_pocket_icon_color'];} else {$data[$this->prefix . 'soshare_pocket_icon_color'] = $this->config->get($this->prefix . 'soshare_pocket_icon_color');}
+        if (isset($this->request->post[$this->prefix . 'soshare_pocket_hover_icon_color'])) {$data[$this->prefix . 'soshare_pocket_hover_icon_color'] = $this->request->post[$this->prefix . 'soshare_pocket_hover_icon_color'];} else {$data[$this->prefix . 'soshare_pocket_hover_icon_color'] = $this->config->get($this->prefix . 'soshare_pocket_hover_icon_color');}
+        if (isset($this->request->post[$this->prefix . 'soshare_pocket_view'])) {$data[$this->prefix . 'soshare_pocket_view'] = $this->request->post[$this->prefix . 'soshare_pocket_view'];} else {$data[$this->prefix . 'soshare_pocket_view'] = $this->config->get($this->prefix . 'soshare_pocket_view');}
+
+        if (isset($this->request->post[$this->prefix . 'soshare_whatsapp_status'])) {$data[$this->prefix . 'soshare_whatsapp_status'] = $this->request->post[$this->prefix . 'soshare_whatsapp_status'];} else {$data[$this->prefix . 'soshare_whatsapp_status'] = $this->config->get($this->prefix . 'soshare_whatsapp_status');}
+        if (isset($this->request->post[$this->prefix . 'soshare_whatsapp_text_color'])) {$data[$this->prefix . 'soshare_whatsapp_text_color'] = $this->request->post[$this->prefix . 'soshare_whatsapp_text_color'];} else {$data[$this->prefix . 'soshare_whatsapp_text_color'] = $this->config->get($this->prefix . 'soshare_whatsapp_text_color');}
+        if (isset($this->request->post[$this->prefix . 'soshare_whatsapp_hover_text_color'])) {$data[$this->prefix . 'soshare_whatsapp_hover_text_color'] = $this->request->post[$this->prefix . 'soshare_whatsapp_hover_text_color'];} else {$data[$this->prefix . 'soshare_whatsapp_hover_text_color'] = $this->config->get($this->prefix . 'soshare_whatsapp_hover_text_color');}
+        if (isset($this->request->post[$this->prefix . 'soshare_whatsapp_bgcolor'])) {$data[$this->prefix . 'soshare_whatsapp_bgcolor'] = $this->request->post[$this->prefix . 'soshare_whatsapp_bgcolor'];} else {$data[$this->prefix . 'soshare_whatsapp_bgcolor'] = $this->config->get($this->prefix . 'soshare_whatsapp_bgcolor');}
+        if (isset($this->request->post[$this->prefix . 'soshare_whatsapp_hover_bgcolor'])) {$data[$this->prefix . 'soshare_whatsapp_hover_bgcolor'] = $this->request->post[$this->prefix . 'soshare_whatsapp_hover_bgcolor'];} else {$data[$this->prefix . 'soshare_whatsapp_hover_bgcolor'] = $this->config->get($this->prefix . 'soshare_whatsapp_hover_bgcolor');}
+        if (isset($this->request->post[$this->prefix . 'soshare_whatsapp_border_color'])) {$data[$this->prefix . 'soshare_whatsapp_border_color'] = $this->request->post[$this->prefix . 'soshare_whatsapp_border_color'];} else {$data[$this->prefix . 'soshare_whatsapp_border_color'] = $this->config->get($this->prefix . 'soshare_whatsapp_border_color');}
+        if (isset($this->request->post[$this->prefix . 'soshare_whatsapp_hover_border_color'])) {$data[$this->prefix . 'soshare_whatsapp_hover_border_color'] = $this->request->post[$this->prefix . 'soshare_whatsapp_hover_border_color'];} else {$data[$this->prefix . 'soshare_whatsapp_hover_border_color'] = $this->config->get($this->prefix . 'soshare_whatsapp_hover_border_color');}
+        if (isset($this->request->post[$this->prefix . 'soshare_whatsapp_icon_color'])) {$data[$this->prefix . 'soshare_whatsapp_icon_color'] = $this->request->post[$this->prefix . 'soshare_whatsapp_icon_color'];} else {$data[$this->prefix . 'soshare_whatsapp_icon_color'] = $this->config->get($this->prefix . 'soshare_whatsapp_icon_color');}
+        if (isset($this->request->post[$this->prefix . 'soshare_whatsapp_hover_icon_color'])) {$data[$this->prefix . 'soshare_whatsapp_hover_icon_color'] = $this->request->post[$this->prefix . 'soshare_whatsapp_hover_icon_color'];} else {$data[$this->prefix . 'soshare_whatsapp_hover_icon_color'] = $this->config->get($this->prefix . 'soshare_whatsapp_hover_icon_color');}
+        if (isset($this->request->post[$this->prefix . 'soshare_whatsapp_view'])) {$data[$this->prefix . 'soshare_whatsapp_view'] = $this->request->post[$this->prefix . 'soshare_whatsapp_view'];} else {$data[$this->prefix . 'soshare_whatsapp_view'] = $this->config->get($this->prefix . 'soshare_whatsapp_view');}
+
         $data['facebook_status'] = $this->config->get($this->prefix . 'soshare_facebook_status');$data['facebook_text_color'] = $this->config->get($this->prefix . 'soshare_facebook_text_color');
         $data['facebook_hover_text_color'] = $this->config->get($this->prefix . 'soshare_facebook_hover_text_color');$data['facebook_bgcolor'] = $this->config->get($this->prefix . 'soshare_facebook_bgcolor');
         $data['facebook_hover_bgcolor'] = $this->config->get($this->prefix . 'soshare_facebook_hover_bgcolor');$data['facebook_border_color'] = $this->config->get($this->prefix . 'soshare_facebook_border_color');
         $data['facebook_hover_border_color'] = $this->config->get($this->prefix . 'soshare_facebook_hover_border_color');$data['facebook_icon_color'] = $this->config->get($this->prefix . 'soshare_facebook_icon_color');
         $data['facebook_hover_icon_color'] = $this->config->get($this->prefix . 'soshare_facebook_hover_icon_color');$data['facebook_view'] = $this->config->get($this->prefix . 'soshare_facebook_view');
+
         $data['linkedin_status'] = $this->config->get($this->prefix . 'soshare_linkedin_status');$data['linkedin_text_color'] = $this->config->get($this->prefix . 'soshare_linkedin_text_color');
         $data['linkedin_hover_text_color'] = $this->config->get($this->prefix . 'soshare_linkedin_hover_text_color');$data['linkedin_bgcolor'] = $this->config->get($this->prefix . 'soshare_linkedin_bgcolor');
         $data['linkedin_hover_bgcolor'] = $this->config->get($this->prefix . 'soshare_linkedin_hover_bgcolor');$data['linkedin_border_color'] = $this->config->get($this->prefix . 'soshare_linkedin_border_color');
         $data['linkedin_hover_border_color'] = $this->config->get($this->prefix . 'soshare_linkedin_hover_border_color');$data['linkedin_icon_color'] = $this->config->get($this->prefix . 'soshare_linkedin_icon_color');
         $data['linkedin_hover_icon_color'] = $this->config->get($this->prefix . 'soshare_linkedin_hover_icon_color');$data['linkedin_view'] = $this->config->get($this->prefix . 'soshare_linkedin_view');
+
         $data['odnoklassniki_status'] = $this->config->get($this->prefix . 'soshare_odnoklassniki_status');$data['odnoklassniki_text_color'] = $this->config->get($this->prefix . 'soshare_odnoklassniki_text_color');
         $data['odnoklassniki_hover_text_color'] = $this->config->get($this->prefix . 'soshare_odnoklassniki_hover_text_color');$data['odnoklassniki_bgcolor'] = $this->config->get($this->prefix . 'soshare_odnoklassniki_bgcolor');
         $data['odnoklassniki_hover_bgcolor'] = $this->config->get($this->prefix . 'soshare_odnoklassniki_hover_bgcolor');$data['odnoklassniki_border_color'] = $this->config->get($this->prefix . 'soshare_odnoklassniki_border_color');
         $data['odnoklassniki_hover_border_color'] = $this->config->get($this->prefix . 'soshare_odnoklassniki_hover_border_color');$data['odnoklassniki_icon_color'] = $this->config->get($this->prefix . 'soshare_odnoklassniki_icon_color');
         $data['odnoklassniki_hover_icon_color'] = $this->config->get($this->prefix . 'soshare_odnoklassniki_hover_icon_color');$data['odnoklassniki_view'] = $this->config->get($this->prefix . 'soshare_odnoklassniki_view');
+        
         $data['pinterest_status'] = $this->config->get($this->prefix . 'soshare_pinterest_status');$data['pinterest_text_color'] = $this->config->get($this->prefix . 'soshare_pinterest_text_color');
         $data['pinterest_hover_text_color'] = $this->config->get($this->prefix . 'soshare_pinterest_hover_text_color');$data['pinterest_bgcolor'] = $this->config->get($this->prefix . 'soshare_pinterest_bgcolor');
         $data['pinterest_hover_bgcolor'] = $this->config->get($this->prefix . 'soshare_pinterest_hover_bgcolor');$data['pinterest_border_color'] = $this->config->get($this->prefix . 'soshare_pinterest_border_color');
         $data['pinterest_hover_border_color'] = $this->config->get($this->prefix . 'soshare_pinterest_hover_border_color');$data['pinterest_icon_color'] = $this->config->get($this->prefix . 'soshare_pinterest_icon_color');
         $data['pinterest_hover_icon_color'] = $this->config->get($this->prefix . 'soshare_pinterest_hover_icon_color');$data['pinterest_view'] = $this->config->get($this->prefix . 'soshare_pinterest_view');
-        $data['header'] = $this->load->controller('common/header');$data['column_left'] = $this->load->controller('common/column_left');$data['footer'] = $this->load->controller('common/footer');
-        $this->response->setOutput($this->load->view('extension/module/soshare', $data));}
-        protected function validate() {if (!$this->user->hasPermission('modify', 'extension/module/soshare')) {$this->error['warning'] = $this->language->get('error_permission');}
-        if ($this->error && !isset($this->error['warning'])) {$this->error['warning'] = $this->language->get('error_warning');}return !$this->error;}
+
+        $data['pocket_status'] = $this->config->get($this->prefix . 'soshare_pocket_status');$data['pocket_text_color'] = $this->config->get($this->prefix . 'soshare_pocket_text_color');
+        $data['pocket_hover_text_color'] = $this->config->get($this->prefix . 'soshare_pocket_hover_text_color');$data['pocket_bgcolor'] = $this->config->get($this->prefix . 'soshare_pocket_bgcolor');
+        $data['pocket_hover_bgcolor'] = $this->config->get($this->prefix . 'soshare_pocket_hover_bgcolor');$data['pocket_border_color'] = $this->config->get($this->prefix . 'soshare_pocket_border_color');
+        $data['pocket_hover_border_color'] = $this->config->get($this->prefix . 'soshare_pocket_hover_border_color');$data['pocket_icon_color'] = $this->config->get($this->prefix . 'soshare_pocket_icon_color');
+        $data['pocket_hover_icon_color'] = $this->config->get($this->prefix . 'soshare_pocket_hover_icon_color');$data['pocket_view'] = $this->config->get($this->prefix . 'soshare_pocket_view');
+
+        $data['whatsapp_status'] = $this->config->get($this->prefix . 'soshare_whatsapp_status');$data['whatsapp_text_color'] = $this->config->get($this->prefix . 'soshare_whatsapp_text_color');
+        $data['whatsapp_hover_text_color'] = $this->config->get($this->prefix . 'soshare_whatsapp_hover_text_color');$data['whatsapp_bgcolor'] = $this->config->get($this->prefix . 'soshare_whatsapp_bgcolor');
+        $data['whatsapp_hover_bgcolor'] = $this->config->get($this->prefix . 'soshare_whatsapp_hover_bgcolor');$data['whatsapp_border_color'] = $this->config->get($this->prefix . 'soshare_whatsapp_border_color');
+        $data['whatsapp_hover_border_color'] = $this->config->get($this->prefix . 'soshare_whatsapp_hover_border_color');$data['whatsapp_icon_color'] = $this->config->get($this->prefix . 'soshare_whatsapp_icon_color');
+        $data['whatsapp_hover_icon_color'] = $this->config->get($this->prefix . 'soshare_whatsapp_hover_icon_color');$data['whatsapp_view'] = $this->config->get($this->prefix . 'soshare_whatsapp_view');
+
+        $data['header'] = $this->load->controller('common/header');
+        $data['column_left'] = $this->load->controller('common/column_left');
+        $data['footer'] = $this->load->controller('common/footer');
+
+        $this->response->setOutput($this->load->view('extension/module/soshare', $data));
+    }
+        protected function validate() {
+            if (!$this->user->hasPermission('modify', 'extension/module/soshare')) {
+                $this->error['warning'] = $this->language->get('error_permission');
+            }
+        if ($this->error && !isset($this->error['warning'])) {
+            $this->error['warning'] = $this->language->get('error_warning');}return !$this->error;
+        }
 }
